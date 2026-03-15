@@ -1916,14 +1916,14 @@ func (app *App) saveGoogleEvent(cal *calendar.Calendar, item *googleEventItem) {
 	if item.Start.DateTime != "" {
 		event.Start, _ = time.Parse(time.RFC3339, item.Start.DateTime)
 	} else if item.Start.Date != "" {
-		event.Start, _ = time.Parse("2006-01-02", item.Start.Date)
+		event.Start, _ = time.ParseInLocation("2006-01-02", item.Start.Date, time.Local)
 		event.AllDay = true
 	}
 
 	if item.End.DateTime != "" {
 		event.End, _ = time.Parse(time.RFC3339, item.End.DateTime)
 	} else if item.End.Date != "" {
-		event.End, _ = time.Parse("2006-01-02", item.End.Date)
+		event.End, _ = time.ParseInLocation("2006-01-02", item.End.Date, time.Local)
 	}
 
 	if err := app.store.SaveEvent(event); err != nil {
