@@ -556,8 +556,9 @@ func (app *App) buildUI(gtkApp *gtk.Application) {
 
 	app.window.Show()
 
-	// Set initial layout based on window size
-	app.updateLayoutForWidth()
+	// Start with side panels collapsed
+	app.setSidebarVisible(false)
+	app.setDayDetailVisible(false)
 }
 
 func (app *App) buildSidebar() *gtk.Box {
